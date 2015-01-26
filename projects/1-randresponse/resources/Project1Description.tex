@@ -72,10 +72,10 @@ Y_{i} &=& \left\{ \begin{array}{ll}
 Note that we observe only the $Y_i$ values; all the other variables are unobserved. 
 
 \begin{itemize}
-\item Derive the distribution for $Y_i$ conditional on $X_i$. (Hint: Use the law of total probability, conditioning on different possibilities for $Z_{i1}$.)
+\item Derive the distribution for $Y_i$ conditional on $X_i$.
 \item Suppose the students in the survey had been drawn at random from a larger population in which the proportion of students who had used study drugs was $\theta$. (This was not actually the case here, a point we'll come back to.) Then we could model $X_1, \ldots, X_n \stackrel{iid}{\sim} Ber(\theta)$. Under this model, what is the unconditional distribution for $Y_1, \ldots, Y_n$ (that is, conditional only on $\theta$, not the $X$ values)?
 \item Derive the MLE for $\theta$. (Be careful to take note of the valid parameter space.)
-\item Think about {\em at least two} strategies for either calculating or approximating the sampling distribution of the MLE. Write down either a mathematical expression or an algorithm. Consider whether $n$ being small and/or $\theta$ being close to 0 or 1 presents a problem for each strategy you're considering.
+\item Think about {\em at least two} strategies for approximating the sampling distribution of the MLE. Write down either a mathematical expression or an algorithm. Consider whether $n$ being small and/or $\theta$ being close to 0 or 1 presents a problem for each strategy you're considering. (To answer this question, it would be helpful to simulate some data and try it out.)
 \item Now find the MLE for $\theta$ using the real data, and implement your strategies for estimating the sampling distribution. Visualize and compare them.
 \end{itemize}
 
