@@ -1,0 +1,246 @@
+---
+title: "SQL Review"
+author: "Cari Kaufman"
+date: "February 9, 2015"
+output: html_document
+---
+
+I'm assuming you are already familiar with the material from the SQL Bootcamp at  <http://software-carpentry.org/v5/novice/sql/>. If not, you'll need to take some time to go through it on your own. We'll review the syntax of the SELECT comand, with particular emphasis on
+
+1.  Constructing queries in the order they'll be evaluated
+2.  Using subqueries
+3.  Joining more than one table.
+
+Because I'll be using the results of the queries to make plots in R, I'm going to connect to the database from within R, using the package RMySQL. (The username and password will be given in class.)
+
+```{r, echo=FALSE}
+user = "****"; password = "****" # Replace with info given in lecture
+```
+```{r}
+library(RMySQL)
+con <- dbConnect(RMySQL::MySQL(), dbname = "ontime",
+                 host = "radagast.berkeley.edu",
+                 user = user, password = password)
+```
+
+Let's see what tables exist in the database.
+
+```{r}
+dbListTables(con)
+```
+
+## Writing queries in order of evaluation
+
+Let's first review SELECT commands that work with a single table. The basic format looks like this.
+
+```
+SELECT columns or aggregate functions of columns
+FROM table
+[WHERE conditions]
+[GROUP BY columns]
+[HAVING conditions]
+[ORDER BY columns [ASC | DESC] ]
+[LIMIT rows]
+```
+
+The thing that has helped me the most in learning to write SQL queries is to write them in the order in which they're going to be evaluated. Breaking them down in this way gives you a series of simple questions to answer. The order in which the SELECT command above is evaluated is
+
+1. FROM: The working table is constructed.
+2. WHERE: The WHERE clause is applied to each row of the table, and only the rows that test TRUE are retained.
+3. GROUP BY: The results are broken into groups of rows all with the same value of the GROUP BY clause.
+4. HAVING: The HAVING clause is applied to each group and only those that test TRUE are retained.
+5. SELECT: The attributes not in the list are dropped, aggregates are calculated, and options DISTINCT, ORDER BY, and LIMIT are applied.
+
+### Example 1
+
+*Working with the airports table, calculate the number of airports in each state. Report the results in decreasing order of the number of airports.*
+
+First a quick look at what's in the airports table.
+```{r}
+dbListFields(con, "airports")
+```
+
+Let's fill of the 5 steps in turn. I'll show you what my query looks like after each step.
+
+1. FROM: We need data only from the airports table.
+```
+FROM airports
+```
+2. WHERE: The question needs all the rows, so there's nothing to add here.
+3. GROUP BY: We want to create a subtable for each state and then count the number of rows in it.
+```
+FROM airports
+GROUP BY state
+```
+4. HAVING: The question includes all states, so there's nothing to add here.
+5. SELECT: We want a table with a column for state and one for the total number of airports, which is the same as the number of rows. Note that we can rename a column using AS. We also need to ORDER BY this new column.
+```
+SELECT state, COUNT(*) AS total
+FROM airports
+GROUP BY state
+ORDER BY total DESC;
+```
+
+Ok, let's run it in R!
+
+```{r}
+query = 
+"SELECT state, COUNT(*) AS total
+FROM airports
+GROUP BY state
+ORDER BY total DESC;"
+statetotals = dbGetQuery(con, query)
+statetotals
+```
+It's interesting that Alaska has the most airports. I would guess that many of them are very small. Thinking ahead, we might also want to look at the total volume of flights into and out of each airport.
+
+Clearly there are also some values in the state column other than the 50 states.
+```{r}
+setdiff(statetotals$state, state.abb)
+```
+### Example 2
+
+*Calculate the average departure delay out of SFO in 2008 for each day of the week. Only include the delayed flights in the average (i.e., DepDelay > 0).*
+
+1. FROM: 
+```
+```
+2. WHERE:
+```
+```
+3. GROUP BY: 
+```
+```
+4. HAVING: 
+```
+```
+5. SELECT: 
+```
+```
+
+### Example 3
+
+*Find the worst 5 airports in terms of departure delays in 2008 and their average delays. This time include all flights (early, on time, and delayed) in the average.*
+
+1. FROM: 
+```
+```
+2. WHERE:
+```
+```
+3. GROUP BY: 
+```
+```
+4. HAVING: 
+```
+```
+5. SELECT: 
+```
+```
+
+## Using subqueries
+
+A subquery is just a query whose output is used as part of a more complicated query. It's very common for these to show up in the WHERE or HAVING clauses. Here's an example to illustrate this.
+
+### Example 4
+
+*Find how many flights left SFO in 2008. Then make a list of all the airports with more than this many flights in 2008.*
+
+We can build up the first query as follows.
+
+1. FROM: just the ontime table
+```
+FROM ontime
+```
+2. WHERE: restrict to 2008 and SFO
+```
+FROM ontime 
+WHERE Year = 2008 and Origin = 'SFO'
+```
+3. GROUP BY: nothing to do here
+4. HAVING: ditto
+5. SELECT: count the number of rows (flights)
+```
+SELECT COUNT(*)
+FROM ontime 
+WHERE Year = 2008 and Origin = 'SFO';
+```
+
+```{r}
+query = 
+"SELECT COUNT(*)
+FROM ontime 
+WHERE Year = 2008 and Origin = 'SFO';"
+dbGetQuery(con, query)
+```
+
+Moving onto the second query, we have
+
+1. FROM: Still working with the ontime table.
+```
+FROM ontime
+```
+2. WHERE: Restrict to 2008.
+```
+FROM ontime
+WHERE Year = 2008
+```
+3. GROUP BY: Split things up by origin.
+```
+FROM ontime
+WHERE Year = 2008
+GROUP BY Origin
+```
+4. HAVING: Keep only airports with more flights than SFO
+```
+FROM ontime
+WHERE Year = 2008
+GROUP BY Origin
+HAVING COUNT(*) > (SELECT COUNT(*) FROM ontime 
+                   WHERE Year = 2008 and Origin = 'SFO')
+```
+5. SELECT: The question asked for the airport names. I'll go ahead and include the number of flights, too.
+```
+SELECT Origin, COUNT(*) AS Flights
+FROM ontime
+WHERE Year = 2008
+GROUP BY Origin
+HAVING COUNT(*) > (SELECT COUNT(*) FROM ontime 
+                   WHERE Year = 2008 and Origin = 'SFO');
+```
+
+```{r}
+query = 
+"SELECT Origin, COUNT(*) AS Flights
+FROM ontime
+WHERE Year = 2008
+GROUP BY Origin
+HAVING COUNT(*) > (SELECT COUNT(*) FROM ontime 
+                   WHERE Year = 2008 and Origin = 'SFO');"
+system.time({morethanSFO = dbGetQuery(con, query)})
+morethanSFO
+```
+
+## Joining tables
+
+I believe you've already covered this. I want to show you a complex example that combines it with a subquery. 
+
+### Example 5
+
+*Repeat example 3, but this time include only airports with more than 50000 total flights, and also include all the location information from the airports table.*
+
+1. FROM: 
+```
+```
+2. WHERE:
+```
+```
+3. GROUP BY: 
+```
+```
+4. HAVING: 
+```
+```
+5. SELECT: 
+```
+```
