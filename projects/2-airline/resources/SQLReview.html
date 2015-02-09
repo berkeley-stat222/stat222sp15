@@ -226,14 +226,14 @@ statetotals</code></pre>
 <p><em>Find how many flights left SFO in 2008. Then make a list of all the airports with more than this many flights in 2008.</em></p>
 <p>We can build up the first query as follows.</p>
 <ol style="list-style-type: decimal">
-<li><p>FROM: just the ontime table</p>
+<li><p>FROM: We just need the ontime table.</p>
 <pre><code>FROM ontime</code></pre></li>
-<li><p>WHERE: restrict to 2008 and SFO</p>
+<li><p>WHERE: Restrict to 2008 and SFO.</p>
 <pre><code>FROM ontime 
 WHERE Year = 2008 and Origin = 'SFO'</code></pre></li>
-<li>GROUP BY: nothing to do here</li>
-<li>HAVING: ditto</li>
-<li><p>SELECT: count the number of rows (flights)</p>
+<li>GROUP BY: Nothing to do here.</li>
+<li>HAVING: Ditto.</li>
+<li><p>SELECT: Count the number of rows (flights).</p>
 <pre><code>SELECT COUNT(*)
 FROM ontime 
 WHERE Year = 2008 and Origin = 'SFO';</code></pre></li>
@@ -279,7 +279,7 @@ HAVING COUNT(*) &gt; (SELECT COUNT(*) FROM ontime
                    WHERE Year = 2008 and Origin = 'SFO');&quot;
 system.time({morethanSFO = dbGetQuery(con, query)})</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.001   0.001  32.513</code></pre>
+##   0.001   0.000   0.066</code></pre>
 <pre class="r"><code>morethanSFO</code></pre>
 <pre><code>##   Origin Flights
 ## 1    ATL  414513
@@ -299,6 +299,7 @@ system.time({morethanSFO = dbGetQuery(con, query)})</code></pre>
 <div id="example-5" class="section level3">
 <h3>Example 5</h3>
 <p><em>Repeat example 3, but this time include only airports with more than 50000 total flights, and also include all the location information from the airports table.</em></p>
+<p>We can accomplish this task by first doing everything except the location information first, as a subquery. Then join the result of that subquery with the airports table. Note that if you want to refer back to the columns of a subquery, you need to name it, i.e. (subquery) AS x and then x.column.</p>
 <ol style="list-style-type: decimal">
 <li><p>FROM:</p>
 <pre><code></code></pre></li>

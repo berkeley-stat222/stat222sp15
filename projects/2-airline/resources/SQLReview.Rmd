@@ -148,18 +148,18 @@ A subquery is just a query whose output is used as part of a more complicated qu
 
 We can build up the first query as follows.
 
-1. FROM: just the ontime table
+1. FROM: We just need the ontime table.
 ```
 FROM ontime
 ```
-2. WHERE: restrict to 2008 and SFO
+2. WHERE: Restrict to 2008 and SFO.
 ```
 FROM ontime 
 WHERE Year = 2008 and Origin = 'SFO'
 ```
-3. GROUP BY: nothing to do here
-4. HAVING: ditto
-5. SELECT: count the number of rows (flights)
+3. GROUP BY: Nothing to do here.
+4. HAVING: Ditto.
+5. SELECT: Count the number of rows (flights).
 ```
 SELECT COUNT(*)
 FROM ontime 
@@ -209,7 +209,7 @@ HAVING COUNT(*) > (SELECT COUNT(*) FROM ontime
                    WHERE Year = 2008 and Origin = 'SFO');
 ```
 
-```{r}
+```{r, cache=TRUE}
 query = 
 "SELECT Origin, COUNT(*) AS Flights
 FROM ontime
@@ -228,6 +228,8 @@ I believe you've already covered this. I want to show you a complex example that
 ### Example 5
 
 *Repeat example 3, but this time include only airports with more than 50000 total flights, and also include all the location information from the airports table.*
+
+We can accomplish this task by first doing everything except the location information first, as a subquery. Then join the result of that subquery with the airports table. Note that if you want to refer back to the columns of a subquery, you need to name it, i.e. (subquery) AS x and then x.column.
 
 1. FROM: 
 ```
