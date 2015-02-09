@@ -69,12 +69,24 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <pre><code>## Warning: package 'RMySQL' was built under R version 3.1.2</code></pre>
 <pre><code>## Loading required package: DBI</code></pre>
 <pre><code>## Warning: package 'DBI' was built under R version 3.1.2</code></pre>
-<pre class="r"><code>con &lt;- dbConnect(RMySQL::MySQL(), dbname = &quot;ontime&quot;,
-                 host = &quot;radagast.berkeley.edu&quot;,
-                 user = user, password = password)</code></pre>
+<pre class="r"><code>con = dbConnect(RMySQL::MySQL(), dbname = &quot;ontime&quot;,
+                host = &quot;radagast.berkeley.edu&quot;,
+                user = user, password = password)</code></pre>
 <p>Let’s see what tables exist in the database.</p>
 <pre class="r"><code>dbListTables(con)</code></pre>
 <pre><code>## [1] &quot;airports&quot; &quot;carriers&quot; &quot;ontime&quot;</code></pre>
+<p>We can look at the columns/attributes in a particular table.</p>
+<pre class="r"><code>dbListFields(con, &quot;ontime&quot;)</code></pre>
+<pre><code>##  [1] &quot;Year&quot;              &quot;Month&quot;             &quot;DayofMonth&quot;       
+##  [4] &quot;DayOfWeek&quot;         &quot;DepTime&quot;           &quot;CRSDepTime&quot;       
+##  [7] &quot;ArrTime&quot;           &quot;CRSArrTime&quot;        &quot;UniqueCarrier&quot;    
+## [10] &quot;FlightNum&quot;         &quot;TailNum&quot;           &quot;ActualElapsedTime&quot;
+## [13] &quot;CRSElapsedTime&quot;    &quot;AirTime&quot;           &quot;ArrDelay&quot;         
+## [16] &quot;DepDelay&quot;          &quot;Origin&quot;            &quot;Dest&quot;             
+## [19] &quot;Distance&quot;          &quot;TaxiIn&quot;            &quot;TaxiOut&quot;          
+## [22] &quot;Cancelled&quot;         &quot;CancellationCode&quot;  &quot;Diverted&quot;         
+## [25] &quot;CarrierDelay&quot;      &quot;WeatherDelay&quot;      &quot;NASDelay&quot;         
+## [28] &quot;SecurityDelay&quot;     &quot;LateAircraftDelay&quot;</code></pre>
 <div id="writing-queries-in-order-of-evaluation" class="section level2">
 <h2>Writing queries in order of evaluation</h2>
 <p>Let’s first review SELECT commands that work with a single table. The basic format looks like this.</p>
@@ -189,33 +201,82 @@ statetotals</code></pre>
 <h3>Example 2</h3>
 <p><em>Calculate the average departure delay out of SFO in 2008 for each day of the week. Only include the delayed flights in the average (i.e., DepDelay &gt; 0).</em></p>
 <ol style="list-style-type: decimal">
-<li><p>FROM:</p>
-<pre><code></code></pre></li>
-<li><p>WHERE:</p>
-<pre><code></code></pre></li>
-<li><p>GROUP BY:</p>
-<pre><code></code></pre></li>
-<li><p>HAVING:</p>
-<pre><code></code></pre></li>
+<li><p>FROM: Just need the ontime table.</p>
+<pre><code>FROM ontime</code></pre></li>
+<li><p>WHERE: Remove flights that aren’t delayed. Only include 2008 and SFO.</p>
+<pre><code>FROM ontime
+WHERE DepDelay &gt; 0 AND Year = 2008 AND Origin = SFO</code></pre></li>
+<li><p>GROUP BY: Make subtables for day of week.</p>
+<pre><code>FROM ontime
+WHERE DepDelay &gt; 0 AND Year = 2008 AND Origin = SFO
+GROUP BY DayOfWeek</code></pre></li>
+<li>HAVING: I don’t want to exclude any day of week, so there’s nothing to do here.</li>
 <li><p>SELECT:</p>
-<pre><code></code></pre></li>
+<pre><code>SELECT DayOfWeek, AVG(DepDelay) AS AvgDelay
+FROM ontime
+WHERE DepDelay &gt; 0 AND Year = 2008 AND Origin = SFO
+GROUP BY DayOfWeek
+ORDER BY DayOfWeek;</code></pre>
+<p>Let’s run it in R.</p></li>
 </ol>
+<pre class="r"><code>query = 
+&quot;SELECT DayOfWeek, AVG(DepDelay) AS AvgDelay
+FROM ontime
+WHERE DepDelay &gt; 0 AND Year = 2008 AND Origin = 'SFO'
+GROUP BY DayOfWeek
+ORDER BY DayOfWeek;&quot;
+SFODayOfWeek2008 = dbGetQuery(con, query)</code></pre>
+<pre><code>## Warning in .local(conn, statement, ...): Decimal MySQL column 1 imported
+## as numeric</code></pre>
+<pre class="r"><code>SFODayOfWeek2008</code></pre>
+<pre><code>##   DayOfWeek AvgDelay
+## 1         1  39.7134
+## 2         2  37.1453
+## 3         3  34.5928
+## 4         4  36.4982
+## 5         5  38.9265
+## 6         6  37.2713
+## 7         7  38.5122</code></pre>
 </div>
 <div id="example-3" class="section level3">
 <h3>Example 3</h3>
 <p><em>Find the worst 5 airports in terms of departure delays in 2008 and their average delays. This time include all flights (early, on time, and delayed) in the average.</em></p>
 <ol style="list-style-type: decimal">
-<li><p>FROM:</p>
-<pre><code></code></pre></li>
-<li><p>WHERE:</p>
-<pre><code></code></pre></li>
-<li><p>GROUP BY:</p>
-<pre><code></code></pre></li>
-<li><p>HAVING:</p>
-<pre><code></code></pre></li>
+<li><p>FROM: We just need the ontime table.</p>
+<pre><code>FROM ontime</code></pre></li>
+<li><p>WHERE: Just keep rows for 2008.</p>
+<pre><code>FROM ontime
+WHERE Year = 2008</code></pre></li>
+<li><p>GROUP BY: Make subtables for each airport (Origin)</p>
+<pre><code>FROM ontime
+WHERE Year = 2008
+GROUP BY Origin</code></pre></li>
+<li>HAVING: Nothing to do here.</li>
 <li><p>SELECT:</p>
-<pre><code></code></pre></li>
+<pre><code>SELECT Origin, AVG(DelDelay) AS AvgDelay
+FROM ontime
+WHERE Year = 2008
+GROUP BY Origin
+ORDER BY AvgDelay DESC
+LIMIT 5;</code></pre></li>
 </ol>
+<pre class="r"><code>query = 
+&quot;SELECT Origin, AVG(DepDelay) AS AvgDelay
+FROM ontime
+WHERE Year = 2008
+GROUP BY Origin
+ORDER BY AvgDelay DESC
+LIMIT 5;&quot;
+Worst5 = dbGetQuery(con, query)</code></pre>
+<pre><code>## Warning in .local(conn, statement, ...): Decimal MySQL column 1 imported
+## as numeric</code></pre>
+<pre class="r"><code>Worst5</code></pre>
+<pre><code>##   Origin AvgDelay
+## 1    ACK  27.3720
+## 2    PUB  27.0000
+## 3    CEC  23.0941
+## 4    PIR  22.8000
+## 5    AKN  21.5603</code></pre>
 </div>
 </div>
 <div id="using-subqueries" class="section level2">
@@ -277,10 +338,8 @@ WHERE Year = 2008
 GROUP BY Origin
 HAVING COUNT(*) &gt; (SELECT COUNT(*) FROM ontime 
                    WHERE Year = 2008 and Origin = 'SFO');&quot;
-system.time({morethanSFO = dbGetQuery(con, query)})</code></pre>
-<pre><code>##    user  system elapsed 
-##   0.001   0.000   0.066</code></pre>
-<pre class="r"><code>morethanSFO</code></pre>
+morethanSFO = dbGetQuery(con, query)
+morethanSFO</code></pre>
 <pre><code>##   Origin Flights
 ## 1    ATL  414513
 ## 2    DEN  241443
