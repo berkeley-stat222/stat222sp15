@@ -1,0 +1,121 @@
+---
+title: "Adjusting the Flight Data by Timezone"
+author: "Cari Kaufman"
+date: "February 13, 2015"
+output: html_document
+---
+
+To run the code for this example you will first need to set the variables _user_ and _password_ to what I gave you in class.
+```{r, echo = FALSE}
+user = password = "****"
+```
+
+```{r}
+library(RMySQL)
+con = dbConnect(RMySQL::MySQL(), dbname = "ontime",
+                host = "radagast.berkeley.edu",
+                user = user, password = password)
+```
+If you want to look at temporal information in the _ontime_ table, you need to be aware that the times are all reported relative to the local time zone. For some questions, it would be interesting to translate the times so that they are comparable. For example, we would want two flights, one leaving the west coast at noon and another leaving the east coast at 3pm, to be given the same departure time.
+
+To get the timezone information, we can use the lon/lat information in the _airports_ table. Google has an API for obtaining time zone information from lon/lat, but there are limits to the number of requests per minute that we would exceed. Instead, I downloaded shapefiles for the US timezones from http://efele.net/maps/tz/us/. To import the shapefiles into R, I first needed to install the _rgdal_ package. (At the moment there aren't binaries for this package. I followed [these instructions](http://www.janosgyerik.com/installing-rgdal-in-r-on-os-x-mavericks/) to install it on my Mac.) If you want to skip this part and just get the timezone information, you can download the file airportlocs.RData (created below). 
+
+```{r}
+library(rgdal)
+setwd("~/Dropbox/Work/current/stat222sp15/projects/2-airline/code") # change as needed
+tz = readOGR("tz_us", "tz_us") # folder, then file without .shp
+class(tz)
+names(tz)
+head(tz$TZID)
+```
+Let's get the airport location information to overlay over the polygons. However, I only want to get the airports that are listed as origins in the _ontime_ table; there are many more than this in the _airports_ table.
+```{r}
+dbGetQuery(con, "SELECT COUNT(DISTINCT Origin) FROM ontime")
+dbGetQuery(con, "SELECT COUNT(DISTINCT iata) FROM airports")
+query = 
+"SELECT *
+FROM airports
+WHERE iata IN (SELECT DISTINCT Origin FROM ontime)"
+airportlocs = dbGetQuery(con, query)
+```
+
+Let's plot the airports.
+
+```{r}
+library(maps)
+library(sp) # for spatial data classes and plotting
+with(airportlocs, plot(lon, lat, pch = ".", col = 2))
+map('world', add = TRUE, col = "gray")
+plot(tz, add = TRUE)
+```
+
+Not all airports are covered by the timezone polygons, so some of them will have missing timezone information.
+
+Now we create a _SpatialPoints_ object from the lon/lat data and use the _over_ function to get the names of the corresponding polygons; these are the timezones.
+
+```{r}
+airportsp = SpatialPoints(with(airportlocs, cbind(lon, lat)),
+                          proj4string = CRS(proj4string(tz)))
+airportlocs$tz = over(airportsp, tz)$TZID
+library(ggplot2)
+with(airportlocs, qplot(lon, lat, color = tz))
+save(airportlocs, file = "airportlocs.RData")
+```
+
+Now we need to figure out how to adjust for each timezone. This is tricky, because Daylight Saving Time is not followed uniformly across the US, and the period of Daylight Saving Time also changed in 2007. You can find more information about this [here](http://www.timetemperature.com/tzus/time_zone.shtml) and [here](http://www.timetemperature.com/tzus/daylight_saving_time_extended.shtml).
+
+Rather than doing this by hand, I'm going to rely on the timezone implementation within R's date/time classes. According to the documentation, the function _OlsonNames_ gives the ``time-zone names known to the Olson/IANA database on the current system.'' Luckily for us, this matches the format for the timezone information we have.
+```{r}
+help(timezones)
+all(is.element(levels(airportlocs$tz), OlsonNames()))
+```
+Here's an example of how you can use this in practice. I'm going to extract the flights for a specific day and then store the times, including the timezone information.
+```{r}
+query = 
+"SELECT *
+FROM ontime
+WHERE Year = 2008 AND Month = 1 AND DayofMonth = 1"
+oneday = dbGetQuery(con, query)
+```
+Now let's convert the _DepTime_ column to times in POSIXlt format. First extract the hours and minutes. The *hhmm* format is a little non-intuitive, but note that we can manipulate it using modular arithmetic.
+```{r}
+hours = oneday$DepTime %/% 100
+minutes = oneday$DepTime %% 100
+```
+Now we get the timezones for each row in the dataframe _oneday_.
+```{r}
+index = match(oneday$Origin, airportlocs$iata)
+oneday$tz = airportlocs$tz[index]
+```
+Next, create a character vector with the dates and times. This will be used by the _as.POSIXlt_ function.
+```{r}
+help(as.POSIXlt)
+dates = with(oneday, paste(Year, Month, DayofMonth, sep = "-"))
+times = paste(hours, minutes, sep = ":")
+datetimes = paste(dates, times)
+head(datetimes)
+as.POSIXlt(head(datetimes)) # without timezone adjustment
+```
+From what I can ascertain, the _as.POSIXlt_ can accept timezone information, but with only one timezone at a time.
+```{r}
+as.POSIXlt(Sys.time(), tz = "America/Los_Angeles")
+as.POSIXlt(Sys.time(), tz = "America/New_York")
+#as.POSIXlt(rep(Sys.time(), 2), tz = c("America/Los_Angeles", "America/New_York")) # not run; generates an error
+```
+That's ok; we'll just use _lapply_ to create a work-around. (I tried using _sapply_, but it didn't concatenate the results properly. This solution is a bit ugly and slow, but it works.)
+```{r}
+wrapper = function(i){
+  if(is.na(oneday$tz[i])) return(NA)
+  as.POSIXlt(datetimes[i], tz = as.character(oneday$tz[i]))
+}
+DepTimeTZList = lapply(1:nrow(oneday), wrapper)
+DepTimeTZ = do.call(c, DepTimeTZList) # concatenate each element of the list
+```
+
+Note that when the concatenation happens, a common timezone is adopted, just as we wanted! Now all the times are directly comparable.
+
+```{r}
+DepTimeTZList[1:3]
+DepTimeTZ[1:3]
+summary(DepTimeTZ) # NAs had missing timezone
+```

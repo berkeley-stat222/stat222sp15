@@ -276,18 +276,41 @@ I believe you've already covered this. I want to show you a complex example that
 
 We can accomplish this task by first doing everything except the location information first, as a subquery. Then join the result of that subquery with the airports table. Note that if you want to refer back to the columns of a subquery, you need to name it, i.e. (subquery) AS x and then x.column.
 
-1. FROM: 
+1. FROM: Data in the ontime table and airports
 ```
+FROM (SELECT Origin, AVG(DepDelay) AS AvgDelay
+      FROM ontime
+      WHERE Year = 2008
+      GROUP BY Origin
+      HAVING COUNT(*) > 50000
+      ORDER BY AvgDelay DESC
+      LIMIT 5) AS x JOIN airports ON x.Origin = airports.iata
 ```
-2. WHERE:
+2. WHERE: Nothing to do here.
+3. GROUP BY: Nothing to do here.
+4. HAVING: Nothing to do here.
+5. SELECT: Keep everything from x and airports
 ```
+SELECT *
+FROM (SELECT Origin, AVG(DepDelay) AS AvgDelay
+      FROM ontime
+      WHERE Year = 2008
+      GROUP BY Origin
+      HAVING COUNT(*) > 50000
+      ORDER BY AvgDelay DESC
+      LIMIT 5) AS x JOIN airports ON x.Origin = airports.iata;
 ```
-3. GROUP BY: 
-```
-```
-4. HAVING: 
-```
-```
-5. SELECT: 
-```
+
+```{r}
+query = 
+"SELECT *
+FROM (SELECT Origin, AVG(DepDelay) AS AvgDelay
+      FROM ontime
+      WHERE Year = 2008
+      GROUP BY Origin
+      HAVING COUNT(*) > 50000
+      ORDER BY AvgDelay DESC
+      LIMIT 5) AS x JOIN airports ON x.Origin = airports.iata;"
+Worst5Updated = dbGetQuery(con, query)
+Worst5Updated
 ```

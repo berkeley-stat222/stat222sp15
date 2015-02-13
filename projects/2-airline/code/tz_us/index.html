@@ -1,0 +1,216 @@
+<!--
+# To the extent possible under law, Eric Muller has waived all
+# copyright and related or neighboring rights to the efele.net/tz maps
+# (comprising the shapefiles, the web pages describing them and the scripts
+# and data used to build them. This work is published from the United States of
+# America.
+#
+# See http://creativecommons.org/publicdomain/zero/1.0/ for more details.
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>A map of the TZ timezones of the US</title>
+<style type="text/css">
+<!--
+.style4 {font-size: small}
+-->
+</style>
+</head>
+
+<body>
+<h2 align='center'>tz_us, an efele.net/tz map</h2>
+<h3 align='center'>A shapefile of the TZ timezones of the United States</h3>
+<p align='center'>Last data update: July 5, 2013</p>
+<p align='center'>Last page update: July 5, 2013</p>
+<p></p>
+
+<p>The <a href="tz_us.zip">tz_us</a> shapefile captures the boundaries of the TZ timezones of the United States, as of TZ 2012c.</p>
+
+<p>The geometries are entirely derived from the countyp020p and timeznp020 shapefiles provided by the <a href="http://www.nationalatlas.gov/maplayers.html?openChapters=chpbound#chpbound">National Atlas</a>.</p>
+<p>All the TZ timezones of United States listed in TZ&rsquo;s zone.tab are represented, except for <em>America/Shiprock</em> which is included in <em>America/Denver</em>.</p>
+<h3>Snapshot of the shapefile</h3>
+<p>This is a snaphsot of the shapefile.</p>
+<p>
+<p align="center"><img src="tz_us.png" /></p>
+<h3>&nbsp;</h3>
+<h3>Known problems</h3>
+<p>TZ mentions that <em>America/Kentucky/Louisville</em> contains three
+counties of Indiana and part of Kentucky, but does not describe precisely that part of Kentucky. In the map, it is made of Jefferson county.</p>
+<p>In general, towns on or near the boundary of a zone may practically follow the time of a neighboring zone. We do not attempt to record the boundaries at that level of detail. For example,  the boundary between <em>America/Los_Angeles</em> and <em>America/Denver</em> follows the Nevada/Utah border; in practice and by <a href="http://frwebgate.access.gpo.gov/cgi-bin/getdoc.cgi?dbname=1999_register&docid=99-27240-filed">law since 1999</a>, the city of West Wendover, Nevada, is part of <em>America/Denver</em>. </p>
+<p>&nbsp;</p>
+<h3>Logical description of the zones</h3>
+
+<p>Except for the areas described below, the TZ timezone is determined from the legal timezone as follows:</p>
+<ul>
+<li>Eastern: <i>America/New_York</i></li>
+<li>Central: <i>America/Chicago</i></li>
+<li>Mountain: <i>America/Denver</i></li>
+<li>Pacific: <i>America/Los_Angeles</i></li>
+</ul>
+
+
+<h4>Alaska</h4>
+<ul>
+<li><i>America/Adak:</i> Alaska, with timeznp020.symbol = HA</li>
+<li><i>America/Yakutat:</i> Yakutat City and Borough</li>
+<li><i>America/Juneau:</i> Skagway-Hoonah-Angoon Census Area, Juneau City and Borough, Haines Borough</li>
+<li><i>America/Sitka:</i> Wrangell-Petersburg Census Area, Sitka City and Borough, Ketchikan Gateway Borough, an unidentified area at the south of Ketchikan, bordering Canada, Prince of Wales-Outer Ketchikan Census Area less Metlakatla</li>
+<li><i>America/Metlakatla:</i> the Metlakatla reservation, understood to cover the whole of Annette island, as well as a few nearby islands</li>
+<li><i>America/Anchrorage: </i> rest of Alaska, east of 162°</li>
+<li><i>America/Nome: </i> rest of Alaska, west of 162°</li>
+</ul>
+
+<h4>Arizona</h4>
+<ul>
+<li><i>America/Phoenix: </i> Arizona, less the Navajo lands</li>
+</ul>
+
+<h4>Hawaii</h4>
+<ul>
+<li><i>America/Honolulu</i></li>
+</ul>
+
+<h4>Idaho</h4>
+<ul>
+<li><i>America/Boise: </i> the part of Idaho legally in the Mountain Zone</li>
+</ul>
+
+<h4>Indiana </h4>
+<ul>
+<li><i>America/Indiana/Marengo: </i> Crawford county</li>
+<li><i>America/Indiana/Vincennes: </i> Daviess, Dubois, Knox, and Martin counties</li>
+<li><i>America/Indiana/Tell_City: </i> Perry county</li>
+<li><i>America/Indiana/Petersburg: </i> Pike county</li>
+<li><i>America/Indiana/Knox: </i> Starke county</li>
+<li><i>America/Indiana/Winamac: </i> Pulaski county</li>
+<li><i>America/Indiana/Vevay: </i> Switzerland county</li>
+<li><i>America/Kentucky/Louisville: </i> Clark, Floyd, and Harrison counties.</li>
+<li><i>America/New_York: </i> Dearborn and Ohio counties</li>
+<li><i>America/Chicago: </i> Gibson, Jasper, Lake, LaPorte, Newton, Porter, Posey, Spencer, Vanderburgh and Warrick counties</li>
+<li><i>America/Indiana/Indianapolis: </i>rest of Indiana</li>
+</ul>
+
+<h4>Kentucky</h4>
+<ul>
+<li><i>America/Kentucky/Louisville: </i>Jefferson county.</li>
+<li><i>America/Kentucky/Monticello: </i>Wayne county</li>
+</ul>
+
+<h4>Michigan</h4>
+<ul>
+<li><i>America/Menominee: </i>Dickinson, Gogebic, Iron and Menominee counties</li>
+</ul>
+
+<h4>North Dakota</h4>
+<ul>
+<li><i>America/North_Dakota/Center:</i> North Dakota: Oliver county</li>
+<li><i>America/North_Dakota/New_Salem: </i>North Dakota: Morton county</li>
+<li><i>America/North_Dakota/Beulah: </i>North Dakota: Mercer county</li>
+</ul>
+
+<h4>Oregon</h4>
+<ul>
+  <li><i>America/Boise: </i> the part of Oregon legally in the Mountain Zone</li>
+</ul>
+<h4>Puerto Rico</h4>
+<ul>
+<li><i>America/Puerto_Rico</i></li>
+</ul>
+
+<h4>Virgin Islands</h4>
+<ul>
+<li><i>America/St_Thomas</i></li>
+</ul>
+<p>&nbsp;</p>
+<h3>Construction of the shapefile</h3>
+
+<p>The zip of the <a href="tz_us_ingredients.zip">ingredients</a> contains a script to build the map, the modified sources.</p>
+
+<p>The starting point is a couple of map layers from the <a
+href='http://nationalatlas.gov'>National Atlas</a>:</p>
+
+  <ul>
+    <li>the &#x201C;County Boundaries, 2001&#x201D; layer (<a
+    href='http://www.nationalatlas.gov/metadata/countyp020.faq.html'>description</a>,
+    <a
+    href='http://edcftp.cr.usgs.gov/pub/data/nationalatlas/countyp020.tar.gz'>shapefile</a>)
+    <li>the &#x201C;Time Zones&#x201D; layer (<a
+  href='http://www.nationalatlas.gov/metadata/timeznp020.faq.html'>description</a>,
+  <a
+  href='http://edcftp.cr.usgs.gov/pub/data/nationalatlas/timeznp020.tar.gz'>shapefile</a>). This
+  maps only captures the current time zones and does not include the
+  historical time zones recorded in TZ</li> </ul>
+
+<p>Unfortunately, these two maps do not work well together: for
+example, some common boundaries are not digitized in exactly the same
+way. So the first step was to conflate them. For the County Boundaries
+layer, the only change was to add intermediate points where a time
+zone boundary departs from a county boundary. For the Time Zones
+layer, the change was to replace the common boundaries by the data
+from the County Boundaries. The resulting shapefiles are part of
+the <a href="tz_us_ingredients.zip">ingredients</a>.</p>
+
+
+<p>The next step is to perform an overlay of the two maps, to progressively assign a tzid to the geometries (identified by a combination of state, county and &#x201C;modern&#x201D; timezone, in accordance with the description above), and to finally dissolve on the tzid attribute. For the exact details of the assignments, see the script in the ingredients.</p>
+
+<hr/>
+<h3>Terms of use</h3>
+<p><a rel="license" href="http://creativecommons.org/publicdomain/zero/1.0/" style="text-decoration:none;"><img src="http://i.creativecommons.org/l/zero/1.0/80x15.png" border="0" alt="CC0" /></a> To the extent possible under law, Eric Muller has waived all copyright and related or neighboring rights to the <span property="dct:title">efele.net/tz maps</span> (comprising the shapefiles, the web pages describing them and the scripts and data used to build them).
+This work is published from <span about="http://efele.net/maps/tz" property="vcard:Country" datatype="dct:ISO3166" content="US">the United States of America</span>.</p>
+
+
+<p>Note that this does not affect the rights others may have. I am not qualified to determine whether such rights exist.</p>
+<hr/>
+
+<p><span class="style4"><a href="/contact.html">Contact</a> - <a href="../../thanks.html">Thanks</a></span></p>
+<p></p>
+<p>History:</p>
+<ul>
+  <li>July 5, 2013:
+    <ul>
+      <li>some of the Aleutian islands were incorrectly in America/Adak rather than America/Nome. Thanks to Eric Michielli for reporting the problem.</li>
+    </ul>
+  </li>
+  <li>September 30, 2012:
+    <ul>
+      <li>extended America/Metlakatla to cover the whole of Annette island and a few nearby islands. Thanks to James Diebel for pointing out this problem.</li>
+    </ul>
+  </li>
+
+  <li>June 25, 2012, updated for TZ 2012c:
+    <ul>
+      <li>added America/Sitka and America/Metlakatla.</li>
+      <li>fixed a small problem, thanks to Dan O’Neill</li>
+    </ul>
+  </li>
+
+  <li>February 7, 2011:
+    <ul>
+      <li>added America/North_Dakota/Beulah</li>
+      <li>fixes to the polygons of America/Winnipeg, thanks to Veeder South</li>
+    </ul>
+  </li>
+  <li>March 13, 2010:
+    <ul>
+      <li>updated to TZ 2010e (no data change)</li>
+    </ul>
+  </li>
+  <li>November 14, 2009: 
+    <ul>
+      <li>Alaska is now handled properly, thanks information provided by Oscar van Vlijmen</li>
+      <li>Jefferson County, Kentucky is now in America/Kentucky/Louisville</li>
+      <li>added a logical description of the zones</li>
+    </ul>
+  </li>
+  <li>November 10, 2009: updated for TZ 2009r; added the terms of use.</li>
+  <li>November 5, 2008: note on West Wendover, Nevada, thanks to Vernon Cole</li>
+  <li>September 13, 2008: added the snapshot</li>
+  <li>2008: first version</li>
+</ul>
+<p>&nbsp;</p>
+<pre>&nbsp;
+</pre>
+</html>
