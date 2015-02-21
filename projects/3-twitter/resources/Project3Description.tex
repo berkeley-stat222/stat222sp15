@@ -1,0 +1,141 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+
+%-----------------------------------------------------------------------------
+% Special-purpose color definitions (dark enough to print OK in black and white)
+\usepackage{color}
+% A few colors to replace the defaults for certain link types
+\definecolor{orange}{cmyk}{0,0.4,0.8,0.2}
+\definecolor{darkorange}{rgb}{.71,0.21,0.01}
+\definecolor{darkgreen}{rgb}{.12,.54,.11}
+%-----------------------------------------------------------------------------
+% The hyperref package gives us a pdf with properly built
+% internal navigation ('pdf bookmarks' for the table of contents,
+% internal cross-reference links, web links for URLs, etc.)
+\usepackage{hyperref}
+\hypersetup{pdftex, % needed for pdflatex
+  breaklinks=true, % so long urls are correctly broken across lines
+  colorlinks=true,
+  urlcolor=blue,
+  linkcolor=darkorange,
+  citecolor=darkgreen,
+}
+
+%SetFonts
+
+%SetFonts
+
+
+\title{Stat 222 Project 3: Twitter}
+\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+
+\section{Data Description}
+
+For this project, your primary data source will be Twitter.  And you will be
+expected to work with the Twitter API using Python to access this data. On
+Monday (2/23), we will be briefly review Python, introduce JSON (Javascript
+Object Notation), and demonstrate how to interact with the Twitter API using
+the \href{https://github.com/sixohsix/twitter}{Python Twitter Tools}.  However,
+you will need to do outside reading to get up to speed with these
+tools. 
+
+Python Twitter Tools is one of several Python packages for interacting with
+the Twitter API.  It is fairly minimal and is the package used in
+chapter 1 and 9 of \emph{Mining the Social Web}.
+\begin{itemize}
+\item \href{https://rawgit.com/ptwobrussell/Mining-the-Social-Web-2nd-Edition/master/ipynb/html/Chapter%201%20-%20Mining%20Twitter.html}{Chapter 1: Mining Twitter: Exploring Trending Topics, Discovering What People Are Talking About, and More}
+\item \href{https://rawgit.com/ptwobrussell/Mining-the-Social-Web-2nd-Edition/master/ipynb/html/Chapter%209%20-%20Twitter%20Cookbook.html}{Chapter 9: Twitter Cookbook}
+\end{itemize}
+
+
+
+\section{Your Assignment}
+
+Each group is responsible for creating a presentation that visually answers a set of
+questions about this data. {\em Which} questions you answer is up to you, but
+think about telling a story. The story will be more interesting if the
+questions you address are related to each other in some way.
+Here are a few example topics:
+\begin{itemize}
+\item investigate the relation of breaking news on Twitter versus traditional
+  news sources
+\item compare stop words usage on Twitter versus NY Times
+\item chart how the ratio of positive versus negative words used in tweets
+  involving some event (or issue) change over time
+\item relate tweets about a TV show/movie/book to their viewers/ticket sales/sales
+  over time
+\end{itemize}
+
+\subsection*{Timeline}
+
+\begin{itemize}
+\item Monday (2/23) Begin Twitter project
+\item Wednesday (2/25) Poster presentations for airline data
+\item Monday (3/2) Introduction to text mining (e.g., NLTK)
+\item Wednesday (3/4) Pecha Kucha
+\item Monday (3/9)
+\item Wednesday (3/11) Practice presentations
+\item Monday (3/16) Final presentations
+\end{itemize}
+
+\section{Initial Guidance (to do for first data debrief)}
+
+First, 
+
+\section{Next Steps}
+
+On Wednesday 
+
+\newpage
+\section{Presentation Details}
+
+All presentations will be given in the \textbf{Pecha
+Kucha}\footnote{\url{http://en.wikipedia.org/wiki/PechaKucha}} style.  Pecha
+Kucha presentations have a very rigid format and have grown in popularity.  A
+Pecha Kucha presentation consists of 20 slides that are automatically advanced
+20 seconds (20x20).  The complete presentation lasts exactly 6 minutes and 40
+seconds.
+
+This is a very constrained format.  So you will need to carefully plan and
+prepare your talk.  Each group will have 4 members and each member will
+be responsible for presenting 5 slides.  Since the slides will automatically
+advance, you will need to practice your talks before you present in class.
+
+Note that your group will need to have an official in-class practice presentation
+on Wednesday (3/11).  After your practice presentation, you will receive feedback,
+which you should incorporate in your final presentation on Monday (3/16).
+
+\subsection*{How to make slides}
+
+There are many ways to create slides, but make sure that you are able to
+save your slides as a PDF.  Here are some possibilities for you to explore:
+\begin{itemize}
+\item Beamer\\
+ \url{http://web.mit.edu/rsi/www/pdfs/beamer-tutorial.pdf}
+\item Pandoc\\
+ \url{http://johnmacfarlane.net/pandoc/demo/example9/producing-slide-shows-with-pandoc}
+\item Powerpoint
+\item Keynote
+\end{itemize}
+
+\subsection*{How \textbf{NOT} to make slides}
+
+\begin{itemize}
+\item Tufte's \emph{PowerPoint Is Evil}\\
+ \url{http://archive.wired.com/wired/archive/11.09/ppt2.html}
+\item Norvig's \emph{Gettysburg Cemetery Dedication}\\
+ \url{http://norvig.com/Gettysburg/sld001.htm}
+\item Efron's \emph{Thirteen rules}\\
+ \url{http://statweb.stanford.edu/~ckirby/brad/other/2013ThirteenRules.pdf}
+\end{itemize}
+
+\end{document}  
