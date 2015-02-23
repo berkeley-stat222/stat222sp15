@@ -1,0 +1,5 @@
+lecture.tex|hd|ft|jinja|latex:
+    - src/*.py|idio|pycon|pyg|l:
+        - pycon: { 'add-new-files' : True }
+    - _*.tex:
+        - output: False

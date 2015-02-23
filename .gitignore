@@ -38,3 +38,8 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
+
+# dexy
+.dexy
+
+projects/3-twitter/resources/lecture1/output
