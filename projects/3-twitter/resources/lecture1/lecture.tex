@@ -30,7 +30,7 @@ resource.  This resource is typically provided to your webbrowser as an
 \href{http://en.wikipedia.org/wiki/HTML}{HTML} document, which webbrowsers know
 how to render.
 
-Similiarly, you will use HTTP to communicate with the Twitter webservice. However
+Similarly, you will use HTTP to communicate with the Twitter webservice. However
 rather than wishing to know how a webpage should look, you will be interested
 in retrieving data in a form that is amenable to further processing.
 
@@ -93,59 +93,28 @@ the necessary form.  Here is an example of how you might transform
 
 Before I can use list comprehension to form the list of tuples I ensure that
 the nested structure that I iterate over has equal depth in each substructure.
-Now I go ahead and save the list of tuples as a CSV file.  For the first row
-of the CSV file, I add the column names.  Then iterate over the list writing
-each tuple as a new row.
+Now I go ahead and save the list of tuples as a CSV file.
 
 << d['src/json2csv.py|idio|l']['savecsv'] >>
 
 
 \section{Example: US Senate tweets}
 
-As a motivating example, let's consider the Twitter accounts of the
-members of the U.S. Senate.\footnote{\url{https://twitter.com/gov/lists/us-senate/members}}
+If we are interested in Tweets from members of the U.S.
+Senate,\footnote{\url{https://twitter.com/gov/lists/us-senate/members}}
+we could start by getting a list of their Twitter
+accounts.\footnote{\url{https://dev.twitter.com/rest/reference/get/lists/members}}
+Then we could retrieve each Senator's user profile,\footnote{\url{https://dev.twitter.com/rest/reference/get/statuses/user_timeline}}
+which contains their most recent tweets.  This information could then be used
+to create a document-term matrix where a document is defined as a senator's
+recent tweets.  To try to visualize this data we might project the document-term matrix
+onto its first and second principal components.  At this point, it would be
+useful to have additional data about each senator (e.g., party affiliation,
+years in office).\footnote{\url{https://sunlightlabs.github.io/congress/}}
 
-\url{https://sunlightlabs.github.io/congress/}
-
-I first connect to Twitter using the recipe from \cite{russell2013mining}.
-Then I \texttt{GET lists/members} of the U.S.
-Senators.\footnote{\url{https://dev.twitter.com/rest/reference/get/lists/members}}
-
-
-
-
-
-- connect to Twitter
-
-- make some queries
-
-- work with JSON
-
-  - list
-
-  - dictionary
-
-  - string
-
-  - list comprehension
-
-- saving CSV
-
-- work in R
-
-  - pca / clustering?
-
-- ex. senators
-
-  - foreach senator
-
-    - get name
-
-    - get tweets
-
-    - make term document
-
-    - project labeled senators onto 1st and 2nd pcs
+In the appendix, you will find a script to do the above data gathering and
+exploration. This should give you a sense of how you might go about collecting
+your data.  For additional examples see \cite{russell2013mining}.
 
 \newpage
 \section*{Appendix}
@@ -157,11 +126,9 @@ Senators.\footnote{\url{https://dev.twitter.com/rest/reference/get/lists/members
 \begin{figure}[h]
 \centering
   \includegraphics[width=0.9\linewidth]{fig/pca.png}
-  \caption{Bag of words vectors projected on first and second principal axes.}\label{fig:pca}
+  \caption{Document-term matrix projected on first and second principal axes.}\label{fig:pca}
 \end{figure}
 
-
-\newpage
 \subsection*{Links}
 
 \subsubsection*{Webservices} 
