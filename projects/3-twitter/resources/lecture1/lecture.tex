@@ -1,46 +1,46 @@
 \section{Webservices}
 
-Many data source are available on the Internet.  You've probably used
+Many data sources are available on the Internet.  You've probably used
 a web browser interface to search through some of this data and even
 download it to your computer.  As you may have noticed, this manual
 process is labor intensive, error prone, and hard to document.
 
-To allow programmatic and automatic interaction with these data stores, many
-website serve this information via a documented application programmer
-interface (APIs).\footnote{See Appendix.}  These webservice APIs provide a
-simple mechanism to create new functionality on top of existing webcontent.
+To provide programmatic and automatic interaction with these data stores, many
+websites serve this information through a documented application programmer
+interface (API).\footnote{For several examples see the Appendix.}  These
+webservice APIs provide a mechanism to create new functionality on top
+of existing webcontent.
 
 While there are several ways to implement webservices,
 \href{http://en.wikipedia.org/wiki/Representational_state_transfer}{Representational
 State Transfer (REST)} has gained widespread popularity.  REST is more of a
 style than a standard.  A system designed in the REST style is called RESTful.
-RESTful systems typically use HTTP requests to read and post data using the
+RESTful systems typically use HTTP requests to query and post data using the
 standard HTTP verbs (GET, POST, PUT, DELETE, etc.).  Often some form of
 authentication is necessary to communicate with a webservice.  It is common to
 use \href{http://en.wikipedia.org/wiki/OAuth}{OAuth} for this purpose.
 
 \section{Data serialization}
 
-Normally when you use a webbrowser to view a webpage, your browser handles
-the HTTP communication for you.  You just specify what you wish to view
-in the form of a \href{http://en.wikipedia.org/wiki/Uniform_resource_identifier}{URI}
-such as \url{http://example.org/absolute/URI/with/absolute/path/to/resource.txt}.
-At this point your browser communicates with the webserver and requests the
-resource.  This resource is typically provided to your webbrowser as an
-\href{http://en.wikipedia.org/wiki/HTML}{HTML} document, which webbrowsers know
-how to render.
+When you use a web browser to view a webpage, your browser handles the HTTP
+communication for you.  You specify what you wish to view in the form of a
+\href{http://en.wikipedia.org/wiki/Uniform_resource_identifier}{URI} such as
+\url{http://example.org/absolute/URI/with/absolute/path/to/resource.txt}.  At
+this point your browser communicates with the webserver and requests the
+resource.  The resource is typically provided to your web browser as an
+\href{http://en.wikipedia.org/wiki/HTML}{HTML} document, which browsers are
+specifically designed to render.
 
-Similarly, you will use HTTP to communicate with the Twitter webservice. However
-rather than wishing to know how a webpage should look, you will be interested
-in retrieving data in a form that is amenable to further processing.
+Similarly, you will use HTTP to communicate with the Twitter webservice.
+However rather than passively consuming webpages, you will be interested in
+retrieving data in a form that is amenable to further processing.
 
-Data serialization is the process of encoding data structures and objects in a
-format that can be used to store this information on disk or transmit it over
-the web.  For example, you may recall that in R you can use the Rdata format to
+Data serialization refers to the process of encoding data structures and
+objects in a format that can be used to store this information on disk or
+transmit it over the web.  For example, in R you can use the Rdata format to
 save R objects to disk and reload them later.  For webservices, JSON and XML
 are standard formats.  To better understand this, let's briefly look at data
 serialization more generally.
-
 
 \subsection*{Python object}
 First let's create a Python object.
@@ -93,7 +93,7 @@ the necessary form.  Here is an example of how you might transform
 
 Before I can use list comprehension to form the list of tuples I ensure that
 the nested structure that I iterate over has equal depth in each substructure.
-Now I go ahead and save the list of tuples as a CSV file.
+Then I save the list of tuples as a CSV file.
 
 << d['src/json2csv.py|idio|l']['savecsv'] >>
 
@@ -101,16 +101,18 @@ Now I go ahead and save the list of tuples as a CSV file.
 \section{Example: US Senate tweets}
 
 If we are interested in Tweets from members of the U.S.
-Senate,\footnote{\url{https://twitter.com/gov/lists/us-senate/members}}
-we could start by getting a list of their Twitter
+Senate,\footnote{\url{https://twitter.com/gov/lists/us-senate/members}} we
+could start by getting a list of their Twitter
 accounts.\footnote{\url{https://dev.twitter.com/rest/reference/get/lists/members}}
-Then we could retrieve each Senator's user profile,\footnote{\url{https://dev.twitter.com/rest/reference/get/statuses/user_timeline}}
+Then we could retrieve each Senator's user
+profile,\footnote{\url{https://dev.twitter.com/rest/reference/get/statuses/user_timeline}}
 which contains their most recent tweets.  This information could then be used
 to create a document-term matrix where a document is defined as a senator's
-recent tweets.  To try to visualize this data we might project the document-term matrix
-onto its first and second principal components.  At this point, it would be
-useful to have additional data about each senator (e.g., party affiliation,
-years in office).\footnote{\url{https://sunlightlabs.github.io/congress/}}
+recent tweets.  To try to visualize this data we might project the
+document-term matrix onto its first and second principal components.  At this
+point, it would be useful to have additional data about each senator (e.g.,
+party affiliation, years in
+office).\footnote{\url{https://sunlightlabs.github.io/congress/}}
 
 In the appendix, you will find a script to do the above data gathering and
 exploration. This should give you a sense of how you might go about collecting

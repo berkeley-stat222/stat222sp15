@@ -40,7 +40,8 @@ M = np.asmatrix(np.zeros([len(tweets), len(vocab)]))
 for n, tweet in enumerate(tweets):
     for m, term in enumerate(vocab):
         M[n, m] = tweet.count(term)
-# pca
+
+# pca using scikit-learn
 from sklearn import decomposition
 pca = decomposition.PCA(n_components=2)
 pca.fit(M)

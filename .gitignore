@@ -43,3 +43,7 @@ nosetests.xml
 .dexy
 
 projects/3-twitter/resources/lecture1/output
+Q1FrequentistAnalysis.R
+make_groups.py
+old
+
