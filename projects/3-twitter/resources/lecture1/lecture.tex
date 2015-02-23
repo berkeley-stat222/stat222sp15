@@ -85,16 +85,34 @@ If you decide that you would like to use R for part of your analysis or for
 creating figures, I recommend saving the information you want to work with in R
 as a CSV file.  Your JSON file will have nested and non-homogeneous structure,
 which is not possible to directly store using CSV.  So you will need to first
-decide how to
+decide what data you want to save as CSV and then transform the JSON data into
+the necessary form.  Here is an example of how you might transform
+\texttt{mydict} above into a list of equal length tuples.
 
-% d['src/serialize.py|idio|pycon|pyg|l']['prepcsv'] >>
+<< d['src/json2csv.py|idio|l']['prepcsv'] >>
 
-Now you can go ahead an save your list of tuples as a CSV file.
+Before I can use list comprehension to form the list of tuples I ensure that
+the nested structure that I iterate over has equal depth in each substructure.
+Now I go ahead and save the list of tuples as a CSV file.  For the first row
+of the CSV file, I add the column names.  Then iterate over the list writing
+each tuple as a new row.
 
-%    d['src/serialize.py|idio|pycon|pyg|l']['savecsv'] >>
+<< d['src/json2csv.py|idio|l']['savecsv'] >>
 
 
 \section{Example: US Senate tweets}
+
+As a motivating example, let's consider the Twitter accounts of the
+members of the U.S. Senate.\footnote{\url{https://twitter.com/gov/lists/us-senate/members}}
+
+\url{https://sunlightlabs.github.io/congress/}
+
+I first connect to Twitter using the recipe from \cite{russell2013mining}.
+Then I \texttt{GET lists/members} of the U.S.
+Senators.\footnote{\url{https://dev.twitter.com/rest/reference/get/lists/members}}
+
+
+
 
 
 - connect to Twitter
@@ -132,7 +150,18 @@ Now you can go ahead an save your list of tuples as a CSV file.
 \newpage
 \section*{Appendix}
 
+\subsection*{Code}
 
+<< d['src/senators.py|pyg|l'] >>
+
+\begin{figure}[h]
+\centering
+  \includegraphics[width=0.9\linewidth]{fig/pca.png}
+  \caption{Bag of words vectors projected on first and second principal axes.}\label{fig:pca}
+\end{figure}
+
+
+\newpage
 \subsection*{Links}
 
 \subsubsection*{Webservices} 
@@ -157,3 +186,5 @@ Now you can go ahead an save your list of tuples as a CSV file.
 \item \url{http://www.cowtowncoder.com/blog/archives/2012/04/entry_473.html}
 \end{itemize}
 
+\bibliographystyle{plain}
+\bibliography{lecture}

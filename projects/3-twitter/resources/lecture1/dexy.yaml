@@ -1,5 +1,11 @@
 lecture.tex|hd|ft|jinja|latex:
-    - src/*.py|idio|pycon|pyg|l:
+    - .bib:
+        - latex: { 'run-bibtex': True }
+    - src/serialize.py|idio|pycon|pyg|l:
         - pycon: { 'add-new-files' : True }
+    - src/*.py|idio|l
+    - src/*.py|pyg|l
     - _*.tex:
+        - output: False
+    - fig/pca.png:
         - output: False
