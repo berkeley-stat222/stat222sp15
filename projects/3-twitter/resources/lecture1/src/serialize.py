@@ -32,7 +32,7 @@ with open("data.json", "w") as outfile:
 
 ### @export "prepcsv"
 mydict["colleagues"] = [mydict["colleagues"]]
-mylist = [(e["name"], e{"number"], k) for k, v in mydict.items() for e in v]
+mylist = [(e["name"], e["number"], k) for k, v in mydict.items() for e in v]
 
 ### @export "savecsv"
 import csv
