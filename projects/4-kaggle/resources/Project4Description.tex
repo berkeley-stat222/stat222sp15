@@ -1,0 +1,84 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+
+%-----------------------------------------------------------------------------
+% Special-purpose color definitions (dark enough to print OK in black and white)
+\usepackage{color}
+% A few colors to replace the defaults for certain link types
+\definecolor{orange}{cmyk}{0,0.4,0.8,0.2}
+\definecolor{darkorange}{rgb}{.71,0.21,0.01}
+\definecolor{darkgreen}{rgb}{.12,.54,.11}
+%-----------------------------------------------------------------------------
+% The hyperref package gives us a pdf with properly built
+% internal navigation ('pdf bookmarks' for the table of contents,
+% internal cross-reference links, web links for URLs, etc.)
+\usepackage{hyperref}
+\hypersetup{pdftex, % needed for pdflatex
+  breaklinks=true, % so long urls are correctly broken across lines
+  colorlinks=true,
+  urlcolor=blue,
+  linkcolor=darkorange,
+  citecolor=darkgreen,
+}
+
+\usepackage{booktabs}
+
+
+\title{Stat 222 Project 4: Kaggle Competition}
+\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+
+\section{Data Description}
+
+Kaggle is a website that hosts predictive modeling competitions. Some of you may already have participated in these competitions on your own or in other classes. For this project, your group needs to 
+\begin{itemize}
+\item choose a competition
+\item familiarize yourself with the data and the problem context
+\item brainstorm \& research methods to implement in solving the prediction problem
+\item implement your methods and make at least two submissions to Kaggle
+\item document your work in a technical report.
+\end{itemize}
+
+You do not need to choose an active competition, but you may find it more fun to do so. One important limitation is that {\em you should choose a competition that none of the group members has worked on previously.} It is ok if more than one group chooses the same competition.
+
+You will need to sign up for an account with Kaggle if you have not already. When you submit your predictions, do so as a team. For more information on this, see \url{https://www.kaggle.com/wiki/FormingATeam}.
+
+\section{Project Proposal: Due Friday, March 20}
+
+Since this is the most open-ended project we've done so far, it's important that your plan has the appropriate scope. To help you achieve this, we'll be giving you some early feedback about your project. By 5pm Friday, March 20, write a 1-2 page proposal describing what you plan to do and email it to both the instructor and GSI. This does not need to be formal, but you should NOT cut and paste any wording from the project website. You do the preliminary work of reading the documentation, downloading the data, and doing some exploratory data analysis, so can address each of the following points in your own words.
+
+\begin{enumerate}
+\item Competition name and link
+\item Data description - What are the variables? Describe any relevant characteristics (dimension, distribution, temporal indexing, etc.)
+\item Prediction objective - What do you need to predict? How will predictions be evaluated? (Give a mathematical expression if possible.)
+\item Potential methods - What methods will you try? Why are they appropriate?
+\item Relevant benchmarks - What simple methods (e.g. random guessing, deterministic solutions, or off-the-shelf algorithms) can you compare your results to? Often you can find these in the leaderboard.
+\item Helpful references - What books, articles, or other resources can you consult in learning about either the subject-matter of the competition or the methods you plan to use?
+\item Potential pitfalls - What do you anticipate will be difficult about this prediction problem?
+\end{enumerate}
+
+\section{Project Updates: Due Wednesday, April 10}
+
+Each group should plan to give a 10 minute overview of your progress in class on April 1. You may use slides if you like, or just talk informally. I expect you will have preliminary plots and/or results to share. The goal here is for the class to be exposed to the variety of problems that are being worked on, as well as for you to solicit feedback and ideas from people outside your group.
+
+\section{Project Timeline}
+
+\begin{itemize}
+\item Wed, March 18 - project intro; work day
+\item Fri, March 20 - proposal due via email
+\item week of March 23 - spring break
+\item Mon, March 30 - work day
+\item Wed, April 1 - project updates in class
+\item Mon, April 6 \& Wed, April 8 - industry speakers in class
+\item Fri, April 10 - tech report due via email
+\end{itemize}
+
+\end{document}  
