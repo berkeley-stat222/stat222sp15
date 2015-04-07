@@ -1,0 +1,293 @@
+%PDF-1.4
+%“Œ‹ž ReportLab Generated PDF document http://www.reportlab.com
+1 0 obj
+<< /F1 2 0 R /F2 3 0 R /F3 4 0 R >>
+endobj
+2 0 obj
+<< /BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font >>
+endobj
+3 0 obj
+<< /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding /Name /F2 /Subtype /Type1 /Type /Font >>
+endobj
+4 0 obj
+<< /BaseFont /ZapfDingbats /Encoding /ZapfDingbatsEncoding /Name /F3 /Subtype /Type1 /Type /Font >>
+endobj
+5 0 obj
+<< /Contents 9 0 R /MediaBox [ 0 0 792 612 ] /Parent 8 0 R /Resources << /Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ] >> /Rotate 0 /Trans <<  >> 
+  /Type /Page >>
+endobj
+6 0 obj
+<< /Outlines 10 0 R /PageLabels 11 0 R /PageMode /UseNone /Pages 8 0 R /Type /Catalog >>
+endobj
+7 0 obj
+<< /Author () /CreationDate (D:20150403112031+08'00') /Creator (\(unspecified\)) /Keywords () /Producer (ReportLab PDF Library - www.reportlab.com) /Subject (\(unspecified\)) 
+  /Title (Statistics 222 grading rubric) >>
+endobj
+8 0 obj
+<< /Count 1 /Kids [ 5 0 R ] /Type /Pages >>
+endobj
+9 0 obj
+<< /Length 5920 >>
+stream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+q
+1 0 0 1 62.69291 511.1339 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 4 Tm /F2 20 Tf 24 TL 198.8171 0 Td (Statistics 222 grading rubric) Tj T* -198.8171 0 Td ET
+Q
+Q
+q
+1 0 0 1 62.69291 489.1339 cm
+q
+BT 1 0 0 1 0 2 Tm 12 TL /F1 10 Tf 0 0 0 rg (For the fourth project you will need to email a PDF of your written report on Friday, April 10th.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 459.1339 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 14 Tm /F1 10 Tf 12 TL .478826 Tw (While preparing your report, please refer to Cari's lecture from Monday, February 2nd regarding the format and content of your report. The additional) Tj T* 0 Tw (reading may also prove useful.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 381.1339 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 62 Tm /F1 10 Tf 12 TL .469757 Tw (You should include figures and text in the body of your report. Your text should be organized into appropriate sections. Your figures must be labeled,) Tj T* 0 Tw 1.029767 Tw (captioned, and referred to in your text. Leave all code snippets, including variable names, out of the main body or the report; however, you will be) Tj T* 0 Tw .33571 Tw (expected to include all relevant code in an appendix. The code is part of your report and you should spend some time making sure that it is readable,) Tj T* 0 Tw .666821 Tw (correct, and clear. While you should not directly refer to the code in the report, you will need to describe your analysis fully in the text. For example,) Tj T* 0 Tw .887674 Tw (while you should not mention what type of looping structure or variable names you used for a simulation, you must include enough detail such that) Tj T* 0 Tw (someone reading your text should be able to write his or her own program to reproduce your results.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 351.1339 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 14 Tm /F1 10 Tf 12 TL .733118 Tw (Below is the grading rubric I will be using to assess your submissions. To receive the equivalent of an "A" on this assignment you will need to have) Tj T* 0 Tw (roughly two check marks and two check pluses.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 345.1339 cm
+Q
+q
+1 0 0 1 62.69291 171.1339 cm
+1 1 1 rg
+n 0 174 666.6142 -18 re f*
+.878431 .878431 .878431 rg
+n 0 156 666.6142 -30 re f*
+1 1 1 rg
+n 0 126 666.6142 -66 re f*
+.878431 .878431 .878431 rg
+n 0 60 666.6142 -30 re f*
+1 1 1 rg
+n 0 30 666.6142 -30 re f*
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 69.48706 159 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL /F3 10 Tf 12 TL (3) Tj /F1 10 Tf 12 TL (-) Tj T* ET
+Q
+Q
+q
+1 0 0 1 259.9483 159 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL /F3 10 Tf 12 TL (3) Tj /F1 10 Tf 12 TL T* ET
+Q
+Q
+q
+1 0 0 1 450.4094 159 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL /F3 10 Tf 12 TL (3) Tj /F1 10 Tf 12 TL (+) Tj T* ET
+Q
+Q
+q
+1 0 0 1 6 141 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Analysis) Tj T* ET
+Q
+Q
+q
+1 0 0 1 69.48706 129 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 14 Tm /F1 10 Tf 12 TL (Choice of analysis is overly simplistic or) Tj T* (incomplete) Tj T* ET
+Q
+Q
+q
+1 0 0 1 259.9483 141 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Analysis appropriate and substantial) Tj T* ET
+Q
+Q
+q
+1 0 0 1 450.4094 129 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 14 Tm /F1 10 Tf 12 TL (Analysis appropriate, complete, advanced, and) Tj T* (informative) Tj T* ET
+Q
+Q
+q
+1 0 0 1 6 111 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Results) Tj T* ET
+Q
+Q
+q
+1 0 0 1 69.48706 99 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 14 Tm /F1 10 Tf 12 TL (Conclusions are missing, incorrect, or) Tj T* (not based on analysis) Tj T* ET
+Q
+Q
+q
+1 0 0 1 69.48706 75 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 14 Tm /F1 10 Tf 12 TL (Inappropriate choice of plots; poorly) Tj T* (labeled plots; plots missing) Tj T* ET
+Q
+Q
+q
+1 0 0 1 259.9483 99 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 14 Tm /F1 10 Tf 12 TL (Conclusions relevant, but partially) Tj T* (correct, or partially complete) Tj T* ET
+Q
+Q
+q
+1 0 0 1 259.9483 75 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 14 Tm /F1 10 Tf 12 TL (Plots convey information correctly but) Tj T* (lack context for interpretation) Tj T* ET
+Q
+Q
+q
+1 0 0 1 450.4094 99 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 14 Tm /F1 10 Tf 12 TL (Relevant conclusions explicitly tied to analysis) Tj T* (and to context) Tj T* ET
+Q
+Q
+q
+1 0 0 1 450.4094 63 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 26 Tm /F1 10 Tf 12 TL (Plots convey information correctly with) Tj T* (adequate and appropriate reference) Tj T* (information) Tj T* ET
+Q
+Q
+q
+1 0 0 1 6 45 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Writing) Tj T* ET
+Q
+Q
+q
+1 0 0 1 69.48706 33 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 14 Tm /F1 10 Tf 12 TL (Explanation is illogical, incorrect, or) Tj T* (incoherent) Tj T* ET
+Q
+Q
+q
+1 0 0 1 259.9483 33 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 14 Tm /F1 10 Tf 12 TL (Explanation is partially correct but) Tj T* (incomplete or unconvincing) Tj T* ET
+Q
+Q
+q
+1 0 0 1 450.4094 33 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 14 Tm /F1 10 Tf 12 TL (Explanation is correct, complete, and) Tj T* (convincing) Tj T* ET
+Q
+Q
+q
+1 0 0 1 6 15 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Code) Tj T* ET
+Q
+Q
+q
+1 0 0 1 69.48706 15 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Incorrect or missing from appendix) Tj T* ET
+Q
+Q
+q
+1 0 0 1 259.9483 3 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 14 Tm /F1 10 Tf 12 TL (Code is correct and included in the) Tj T* (appendix) Tj T* ET
+Q
+Q
+q
+1 0 0 1 450.4094 15 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Code is correct, clean, efficient, and readable) Tj T* ET
+Q
+Q
+q
+1 J
+1 j
+0 0 0 RG
+.25 w
+n 0 156 m 666.6142 156 l S
+n 0 126 m 666.6142 126 l S
+n 0 60 m 666.6142 60 l S
+n 0 30 m 666.6142 30 l S
+n 63.48706 0 m 63.48706 174 l S
+n 253.9483 0 m 253.9483 174 l S
+n 444.4094 0 m 444.4094 174 l S
+n 0 174 m 666.6142 174 l S
+n 0 0 m 666.6142 0 l S
+n 0 0 m 0 174 l S
+n 666.6142 0 m 666.6142 174 l S
+Q
+Q
+q
+1 0 0 1 62.69291 171.1339 cm
+Q
+ 
+endstream
+endobj
+10 0 obj
+<< /Count 0 /Type /Outlines >>
+endobj
+11 0 obj
+<< /Nums [ 0 12 0 R ] >>
+endobj
+12 0 obj
+<< /S /D /St 1 >>
+endobj
+xref
+0 13
+0000000000 65535 f
+0000000075 00000 n
+0000000129 00000 n
+0000000239 00000 n
+0000000354 00000 n
+0000000472 00000 n
+0000000669 00000 n
+0000000776 00000 n
+0000001015 00000 n
+0000001077 00000 n
+0000007053 00000 n
+0000007103 00000 n
+0000007147 00000 n
+trailer
+<< /ID 
+ % ReportLab generated PDF document -- digest (http://www.reportlab.com)
+ [(\016\314\361{\316\262Gys\(\252\336\224\016\220\030) (\016\314\361{\316\262Gys\(\252\336\224\016\220\030)]
+ /Info 7 0 R /Root 6 0 R /Size 13 >>
+startxref
+7184
+%%EOF
